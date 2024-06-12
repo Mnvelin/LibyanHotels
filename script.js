@@ -54,20 +54,21 @@ urlencoded.append("content", "Confirmed");
 var requestOptions = {
   method: 'POST',
   headers: myHeaders,
-  body: urlencoded.toString(), // Convert URLSearchParams to string
+  body: urlencoded,
   redirect: 'follow'
 };
 
-fetch("https://api.releans.com/post", requestOptions)
-  .then(response => response.text())
-  .then(result => {
-    console.log(result);
-    window.alert("Message sent successfully!"); // Display message box
+fetch("https://api.releans.compost", requestOptions)
+  .then(response => {
+    if (response.ok) {
+      console.log("Message sent successfully!"); // Message for success
+    } else {
+      console.log("Failed to send message. Status:", response.status); // Message for failure
+    }
+    return response.text();
   })
-  .catch(error => {
-    console.log('error', error);
-    window.alert("Failed to send message. Please try again."); // Display message box
-  });
+  .then(result => console.log(result))
+  .catch(error => console.log('Error:', error));
 }
 
 
