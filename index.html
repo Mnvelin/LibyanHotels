@@ -39,9 +39,9 @@
         console.log(data);
       })
       .catch(error => {
-        alert('Failed to send SMS. Please try again.');
-        console.error('Error:', error);
-      });
+  alert('Failed to send SMS. Please try again. Error: ' + error.message);
+  console.error('Error:', error);
+});
     });
   </script>
 </body>
