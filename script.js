@@ -42,7 +42,7 @@ function NavToReservation() {
     // Redirect to the new page
     window.location.href = "ReservationPage.html";
 }
-function SendSMS() {
+function Send() {
 var myHeaders = new Headers();
 myHeaders.append("Authorization", "Bearer Your_API_Key");
 
@@ -65,7 +65,7 @@ fetch("https://api.releans.compost", requestOptions)
   .catch(error => console.log('error', error));
 }
 
-function Send() {
+function SendSMS() {
     window.location.href = "ConfirmationFeedback.html";
     const customerName = document.getElementById('CustomerName').value;
     const recipient = document.getElementById('CustomerPhoneNumber').value;
