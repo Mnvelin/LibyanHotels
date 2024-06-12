@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Releans API Example</title>
+</head>
+<body>
+
+    <button onclick="sendMessage()">Send Message</button>
+
+    <script>
+        async function sendMessage() {
+            // Your API request code goes here
+            const response = await getAPIResponse();
+            console.log(response);
+            // You can handle the response here, like displaying a message to the user
+        }
+
+        async function getAPIResponse() {
+            const fields = {
+                sender: "PickUpStore",
+                mobile: "+218917455098",
+                content: "Hello from Releans API"
+            };
+
+            const response = await fetch('https://api.releans.com/v2/message', {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjAwZmEzNmM5LTNhNzEtNDEzOC1iMjM3LTFmODQ1MjBlZjlkYiIsImlhdCI6MTcxNzg3NDU0MCwiaXNzIjoxOTI1M30.ZbxL_muZN6pm2SKcr96ViNomt-ctpigplp20TTQr0Ps',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(fields)
+            });
+
+            return response.json(); // Assuming the response is JSON
+        }
+    </script>
+
+</body>
+</html>
