@@ -58,7 +58,7 @@ function SendSMS() {
         redirect: 'follow'
     };
 
-    fetch("https://api.releans.com/post", requestOptions)
+    fetch("https://api.releans.compost", requestOptions)
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
