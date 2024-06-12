@@ -43,6 +43,29 @@ function NavToReservation() {
     window.location.href = "ReservationPage.html";
 }
 function SendSMS() {
+    var myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjAwZmEzNmM5LTNhNzEtNDEzOC1iMjM3LTFmODQ1MjBlZjlkYiIsImlhdCI6MTcxNzg3NDU0MCwiaXNzIjoxOTI1M30.ZbxL_muZN6pm2SKcr96ViNomt-ctpigplp20TTQr0Ps");
+
+var urlencoded = new URLSearchParams();
+urlencoded.append("sender", "PickUpStore");
+urlencoded.append("mobile", "+218917455098");
+urlencoded.append("content", "Confirmed");
+
+
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: urlencoded,
+  redirect: 'follow'
+};
+
+fetch("https://api.releans.compost", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+}
+function Send() {
+    window.location.href = "ConfirmationFeedback.html";
     const customerName = document.getElementById('CustomerName').value;
     const recipient = document.getElementById('CustomerPhoneNumber').value;
 
@@ -66,5 +89,4 @@ function SendSMS() {
     .catch(error => {
         alert('Error: ' + error.message);
     });
-    window.location.href = "ConfirmationFeedback.html";
 }
