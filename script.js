@@ -47,7 +47,7 @@ var myHeaders = new Headers();
 myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjAwZmEzNmM5LTNhNzEtNDEzOC1iMjM3LTFmODQ1MjBlZjlkYiIsImlhdCI6MTcxNzg3NDU0MCwiaXNzIjoxOTI1M30.ZbxL_muZN6pm2SKcr96ViNomt-ctpigplp20TTQr0Ps");
 
 var urlencoded = new URLSearchParams();
-urlencoded.append("sender", "PickUpStore");
+urlencoded.append("sender", "Mnvelin");
 urlencoded.append("mobile", "+218917455098");
 urlencoded.append("content", "Confirmed");
 
