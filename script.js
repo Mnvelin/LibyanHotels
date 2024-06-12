@@ -64,6 +64,7 @@ function SendSMS() {
         .catch(error => console.log('error', error));
 }
 
+
 function Send() {
     window.location.href = "ConfirmationFeedback.html";
     const customerName = document.getElementById('CustomerName').value;
