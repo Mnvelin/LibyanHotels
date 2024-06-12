@@ -1,0 +1,47 @@
+.homepage {
+    display:flexbox;
+    justify-content: center;
+    align-items: center;
+    place-items: center;
+    background-color: rgb(185, 199, 211);  
+}
+.pageinfotext {
+    margin-top: 10%;
+    align-items: center;
+    text-align: center;
+    font-size: 30px;
+}
+.cities {
+    color: rgb(84, 84, 170);
+    position: relative;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 30px;
+}
+.textinput1 {
+    position: absolute;
+    align-self: right;
+    text-align: right;
+    width: 25%;
+    padding: 10px;
+    margin-left: 50%;
+    margin-top: 10px;
+    font-size: 16px;
+}
+.textinput2 {
+    position: absolute;
+    align-self: right;
+    text-align: right;
+    width: 25%;
+    padding: 10px;
+    margin-left: 20%;
+    margin-top: 10px;
+    font-size: 16px;
+}
+.confirmationbutton {
+    position: absolute;
+    width: 150px;
+    margin-left: 65%;
+    margin-top: 10%;
+}
