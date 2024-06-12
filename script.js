@@ -44,26 +44,26 @@ function NavToReservation() {
 }
 function SendSMS() {
     var myHeaders = new Headers();
-myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjAwZmEzNmM5LTNhNzEtNDEzOC1iMjM3LTFmODQ1MjBlZjlkYiIsImlhdCI6MTcxNzg3NDU0MCwiaXNzIjoxOTI1M30.ZbxL_muZN6pm2SKcr96ViNomt-ctpigplp20TTQr0Ps");
+    myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjAwZmEzNmM5LTNhNzEtNDEzOC1iMjM3LTFmODQ1MjBlZjlkYiIsImlhdCI6MTcxNzg3NDU0MCwiaXNzIjoxOTI1M30.ZbxL_muZN6pm2SKcr96ViNomt-ctpigplp20TTQr0Ps");
 
-var urlencoded = new URLSearchParams();
-urlencoded.append("sender", "PickUpStore");
-urlencoded.append("mobile", "+218917455098");
-urlencoded.append("content", "Confirmed");
+    var urlencoded = new URLSearchParams();
+    urlencoded.append("sender", "PickUpStore");
+    urlencoded.append("mobile", "+218917455098");
+    urlencoded.append("content", "Confirmed");
 
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: urlencoded,
+        redirect: 'follow'
+    };
 
-var requestOptions = {
-  method: 'POST',
-  headers: myHeaders,
-  body: urlencoded,
-  redirect: 'follow'
-};
-
-fetch("https://api.releans.compost", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
+    fetch("https://api.releans.com/post", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
 }
+
 function Send() {
     window.location.href = "ConfirmationFeedback.html";
     const customerName = document.getElementById('CustomerName').value;
