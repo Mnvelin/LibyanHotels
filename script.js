@@ -42,7 +42,7 @@ function NavToReservation() {
     // Redirect to the new page
     window.location.href = "ReservationPage.html";
 }
-function SendSMS() {
+function Send() {
     var myHeaders = new Headers();
 myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjAwZmEzNmM5LTNhNzEtNDEzOC1iMjM3LTFmODQ1MjBlZjlkYiIsImlhdCI6MTcxNzg3NDU0MCwiaXNzIjoxOTI1M30.ZbxL_muZN6pm2SKcr96ViNomt-ctpigplp20TTQr0Ps");
 
@@ -72,7 +72,7 @@ fetch("https://api.releans.compost", requestOptions)
 }
 
 
-function Send() {
+function SendSMS() {
     window.location.href = "ConfirmationFeedback.html";
     const customerName = document.getElementById('CustomerName').value;
     const recipient = document.getElementById('CustomerPhoneNumber').value;
