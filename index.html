@@ -1,14 +1,48 @@
+<!DOCTYPE html>
 <html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Send SMS</title>
+</head>
+<body>
+  <h1>Send SMS</h1>
+  <form id="smsForm">
+    <label for="phoneNumber">Phone Number:</label>
+    <input type="text" id="phoneNumber" name="phoneNumber" required><br><br>
+    <label for="message">Message:</label><br>
+    <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
+    <button type="submit">Send SMS</button>
+  </form>
 
-    <title>Hotels</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
-    
-    <body class="homepage">
-        <div>
-            <p class="pageinfotext">This is the Main Page That contains all the info about the company and it's goals</p>
-            <p id="CitiesText" class="cities">Cities</p>
-        </div>
-    </body>
+  <script>
+    document.getElementById('smsForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const phoneNumber = document.getElementById('phoneNumber').value;
+      const message = document.getElementById('message').value;
 
+      // Use fetch API to send SMS via Releans
+      fetch('https://platform.releans.com/api/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjAwZmEzNmM5LTNhNzEtNDEzOC1iMjM3LTFmODQ1MjBlZjlkYiIsImlhdCI6MTcxNzg3NDU0MCwiaXNzIjoxOTI1M30.ZbxL_muZN6pm2SKcr96ViNomt-ctpigplp20TTQr0Ps'
+        },
+        body: JSON.stringify({
+          to: phoneNumber,
+          message: message
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert('SMS sent successfully!');
+        console.log(data);
+      })
+      .catch(error => {
+        alert('Failed to send SMS. Please try again.');
+        console.error('Error:', error);
+      });
+    });
+  </script>
+</body>
 </html>
