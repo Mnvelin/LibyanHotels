@@ -61,9 +61,9 @@ var requestOptions = {
 fetch("https://api.releans.compost", requestOptions)
   .then(response => {
     if (response.ok) {
-      console.log("Message sent successfully!"); // Message for success
+       window.alert("Message sent successfully!"); // Alert for success
     } else {
-      console.log("Failed to send message. Status:", response.status); // Message for failure
+      window.alert("Failed to send message. Status: " + response.status); // Alert for failure
     }
     return response.text();
   })
