@@ -1,52 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Send SMS</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send SMS with Releans API</title>
 </head>
 <body>
-  <h1>Send SMS</h1>
-  <form id="smsForm">
-    <label for="phoneNumber">Phone Number:</label>
-    <input type="text" id="phoneNumber" name="phoneNumber" required><br><br>
-    <label for="message">Message:</label><br>
-    <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
-    <button type="submit">Send SMS</button>
-  </form>
+    <h1>Send SMS</h1>
+    <form id="smsForm">
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="text" id="phoneNumber" name="phoneNumber" required><br><br>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea><br><br>
+        <button type="submit">Send SMS</button>
+    </form>
 
-  <script>
-   document.getElementById('smsForm').addEventListener('submit', function(event) {
-  event.preventDefault();
-  const phoneNumber = document.getElementById('phoneNumber').value;
-  const message = document.getElementById('message').value;
+    <script>
+        document.getElementById('smsForm').addEventListener('submit', function(e) {
+            e.preventDefault();
 
-  fetch('https://platform.releans.com/api/send', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer YOUR_API_KEY_HERE'
-    },
-    body: JSON.stringify({
-      to: phoneNumber,
-      message: message
-    })
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Failed to send SMS. HTTP status ' + response.status);
-    }
-    return response.json();
-  })
-  .then(data => {
-    alert('SMS sent successfully!');
-    console.log(data);
-  })
-  .catch(error => {
-    alert('Failed to send SMS. Please try again. Error: ' + error.message);
-    console.error('Error:', error);
-  });
-});
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            const message = document.getElementById('message').value;
+            const apiKey = 'YOUR_RELEANS_API_KEY';
+
+            fetch('https://api.releans.com/v2/message', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjU0NzgwNTFhLWUwYmEtNGFiOS04NzMzLTQ0ODZmMzI5NWEzYyIsImlhdCI6MTcxODI4NDYxOSwiaXNzIjoxOTI1M30.HYbzk1DPMUv3vnkFIT_shM1lY5LOFW8TtDUPlh9aN_Y`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    sender_id: 'YourSenderID',
+                    message: message,
+                    recipients: [phoneNumber]
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert('SMS sent successfully!');
+                } else {
+                    alert('Failed to send SMS: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while sending the SMS.');
+            });
+        });
+    </script>
+</body>
+</html>
+
 
   </script>
 </body>
